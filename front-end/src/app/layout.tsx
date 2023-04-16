@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import './globals.css'
+import{ TodoList } from './components/Todolist'
 
 export const metadata = {
   title: 'Create Next App',
@@ -13,12 +14,12 @@ export default function RootLayout({
   children: ReactNode
 }) {
   return (
-    
-   <>
-   <div>
-    
-   </div>
-   </>
+    <html className='bg-background1'>
+
+  <body>
+    <TodoList />
+  </body>
+    </html>
   
   )
 }

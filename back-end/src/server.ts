@@ -18,7 +18,14 @@ app.post('/todo', async( req, res ) => {
             date: today
         }
     })
-    return res.json({ name, description }) 
+    return res.json('Usuário criado com sucesso') 
 })
+app.get('/todo', async (req, res) => {
+
+    const todo = await prisma.todo.findMany( )
+
+    return res.json( todo ) 
+})
+
 
 app.listen(3333, () => { console.log('Servidor rodando na porta 3333')})
