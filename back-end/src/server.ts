@@ -10,7 +10,7 @@ app.use(bodyParser.json())
 app.post('/todo', async( req, res ) => {
 
     const { name, description } = req.body
-    const today = dayjs().startOf('day').toDate()
+    const today = dayjs().startOf('day').toDate().toISOString()
     await prisma.todo.create({
         data: {
             name: name,
