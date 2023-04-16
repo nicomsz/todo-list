@@ -1,14 +1,11 @@
-import { TodoList } from "./components/Todolist";
-
-
+import { TodoList } from "./components/todolist";
 
 export default function Home() {
-  
   return (
-   <>
-   <div>
-    <TodoList />
-   </div>
-   </>
-  )
+    <>
+      <div>
+        <TodoList />
+      </div>
+    </>
+  );
 }
