@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+/**  @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
@@ -11,6 +11,9 @@ module.exports = {
       'background1': '#dfece6'
      }
     },
+    fontFamily: {
+      sans: ['Rubik', 'sans-serif']
+     }
   },
   plugins: [],
 }
