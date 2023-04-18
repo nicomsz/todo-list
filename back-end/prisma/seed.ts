@@ -24,7 +24,11 @@ async function run() {
                 id: firstTodoId,
                 name: firstTodoName,
                 date: firstTodoDate,
-                description: firstTodoDescription
+                description: firstTodoDescription,
+                checked: false
+                
+                
+                
             }
         }),
         prisma.todo.create({
@@ -32,7 +36,8 @@ async function run() {
                 id: secondTodoId,
                 name: secondTodoName,
                 date: secondTodoDate,
-                description: secondTodoDescription
+                description: secondTodoDescription,
+                checked: false
             }
         }),
         prisma.todo.create({
@@ -40,7 +45,8 @@ async function run() {
                 id: thirdTodoId,
                 name: thirdTodoName,
                 date: thirdTodoDate,
-                description: thirdTodoDescription
+                description: thirdTodoDescription,
+                checked: false
             }
         })
     ])

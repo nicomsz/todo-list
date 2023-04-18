@@ -15,6 +15,7 @@ app.post("/todo", async (req, res) => {
       name: name,
       description: description,
       date: today,
+      checked: false
     },
   });
   return res.json("Usuário criado com sucesso");
@@ -25,6 +26,25 @@ app.get("/todos", async (req, res) => {
 
   return res.json({ todos });
 });
+app.get("/todos/:id", async (req, res) => {
+  const { id } = req.params
+  const todo = await prisma.todo.findUnique({ where: { id } })
+  return res.json({ todo })
+}),
+
+app.patch('/todos/:id', async (req) => {
+  const { checked } = req.body
+  const { id } = req.params
+  await prisma.todo.update({
+    where: {
+      id: id
+    },
+    data: {
+      checked: checked
+    }
+  })
+  return { req }
+})
 
 app.listen(3333, () => {
   console.log("Servidor rodando na porta 3333");

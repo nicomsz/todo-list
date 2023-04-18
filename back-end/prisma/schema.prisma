@@ -15,4 +15,5 @@ model Todo {
   name        String
   description String
   date        DateTime @default(now())
+  checked     Boolean  @default(false)
 }
