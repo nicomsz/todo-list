@@ -32,9 +32,12 @@ app.get("/todos/:id", async (req, res) => {
   return res.json({ todo })
 }),
 
-app.patch('/todos/:id', async (req) => {
+app.patch('/todos/:id', async (req, res) => {
   const { checked } = req.body
   const { id } = req.params
+
+  res.setHeader('Content-Type', 'application/json')
+
   await prisma.todo.update({
     where: {
       id: id
@@ -43,7 +46,7 @@ app.patch('/todos/:id', async (req) => {
       checked: checked
     }
   })
-  return { req }
+  return { res }
 })
 
 app.listen(3333, () => {

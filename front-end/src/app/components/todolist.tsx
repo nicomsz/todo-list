@@ -7,9 +7,13 @@ import DateTime from "./DateTime";
 import Image from "next/image";
 import usePatch from "../hooks/usePatch";
 export const TodoList = () => {
+  type Todo = {
+    id: string,
+    checked: boolean;
+  }
   const { data: todos } = useFetch();
-  const [TodoId, setTodoId]  = useState('')
-  const [TodoCheck, setTodoCheck] = useState(false)
+  const [data, setData]  = useState<Todo>()
+  const [error, setError] = useState(false)
 
 
 
@@ -18,8 +22,30 @@ export const TodoList = () => {
       case true: checked = false
       case false: checked = true
     }
+      const url = `http://localhost:3333/todos/${id}`;
+      const body = JSON.stringify({
+        checked
+      })
+       
+          axios
+            .patch(url, { data: body })
+    
+            .then((response) => {
+             
+              setData(response.data.todos);
+            })
+    
+            .catch((error) => {
+              setError(true);
+              console.log(error)
+            })
+            
+       
+  
+      return { data, error };
+    
   };
-  usePatch(id, checked)
+ 
  
 
   return (
@@ -33,7 +59,7 @@ export const TodoList = () => {
 
                  <p>{todo.name} </p>
                  <div className="flex-grow" />
-                 <button className= "rounded-full content-end align-bottom" onClick={() => setTodoId(todo.id) && setTodoCheck(todo.checked)} >      
+                 <button className= "rounded-full content-end align-bottom" onClick={() => HandleCheckedChange(todo.id, todo.checked)} >      
                     {todo.checked ? (<Image src='./images/icons8-checkmark.svg' alt='SVG' width={25} height={25} />) :                      
                     (<Image src='./images/unchecked.svg' alt='Unchecked' width={25} height={25} />)}                       
 
