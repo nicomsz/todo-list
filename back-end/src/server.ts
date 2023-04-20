@@ -33,20 +33,20 @@ app.get("/todos/:id", async (req, res) => {
 }),
 
 app.patch('/todos/:id', async (req, res) => {
-  const { checked } = req.body
   const { id } = req.params
-
-  res.setHeader('Content-Type', 'application/json')
-
+  const todo = await prisma.todo.findUnique({ where: { id }})
+  const checked = todo?.checked
   await prisma.todo.update({
     where: {
       id: id
     },
     data: {
-      checked: checked
+      checked
     }
   })
-  return { res }
+  return res.status(200).json({
+    "message": "Updated"
+  })
 })
 
 app.listen(3333, () => {

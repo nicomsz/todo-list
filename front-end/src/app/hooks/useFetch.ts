@@ -16,7 +16,8 @@ export default function useFetch() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-  
+    setTimeout(() => {
+
       axios
         .get(url)
         .then((response) => {
@@ -29,8 +30,8 @@ export default function useFetch() {
         .finally(() => {
           setIsFetching(false);
         });
- 
-    },[])
+    },2500);
+    })
 
   return { data, isFetching, error };
 }
