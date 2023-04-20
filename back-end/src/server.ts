@@ -41,7 +41,7 @@ app.patch('/todos/:id', async (req, res) => {
       id: id
     },
     data: {
-      checked
+      checked: !checked
     }
   })
   return res.status(200).json({

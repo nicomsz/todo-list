@@ -15,30 +15,28 @@ export default function MyButton({ id, checked }: TodoProps) {
   const [icon, setIcon] = useState<string>(() => {
     switch (checked) {
       case true:
-        return 'checkmark.svg'
+        return checkmark
       case false:
-        return 'unchecked.svg'
+        return unchecked
     }
   })
   function handleClick() {
     if (icon === checkmark) {
       setIcon(unchecked)
-      console.log(icon)
     } else {
       setIcon(checkmark)
-      console.log(icon)
     }
+    axios
+      .patch(url, {})
+      .then()
+      .catch((error) => {
+        console.log(error)
+      })
   }
-  axios
-    .patch(url, {})
-    .then()
-    .catch((error) => {
-      console.log(error)
-    })
 
   return (
     <button
-      className="rounded-3xl bg-red-500 content-end align-bottom"
+      className="rounded-3xl content-end align-bottom"
       onClick={handleClick}
     >
       <Image src={icon} alt="SVG" width={25} height={25} />
