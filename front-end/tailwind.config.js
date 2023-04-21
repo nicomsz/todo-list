@@ -7,13 +7,14 @@ module.exports = {
   ],
   theme: {
     extend: {
-     colors:{
-      'background1': '#fffae3'
-     }
+      colors: {
+        background1: '#fffae3',
+        addbutton: '#7cfeae',
+      },
     },
     fontFamily: {
-      sans: ['Rubik', 'sans-serif']
-     }
+      sans: ['Rubik', 'sans-serif'],
+    },
   },
   plugins: [],
 }
