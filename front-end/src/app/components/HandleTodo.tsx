@@ -26,12 +26,15 @@ export function HandleTodo() {
   }
   return (
     <>
-      <input value={inputValue} onChange={handleInputChange}></input>
-      <div>
-        <button onClick={HandleAddTodo}>
-          <Image src={addSVG} alt="Add button" width={100} height={100} />
-        </button>
-      </div>
+      <input
+        value={inputValue}
+        onChange={handleInputChange}
+        className="border text-sm rounded shadow-sm border-slate-300 placeholder-slate-300 focus:outline-none focus:border-b-2   "
+      />
+      <div className="flex-grow"></div>
+      <button onClick={HandleAddTodo} className="h-[60px]">
+        <Image src={addSVG} alt="Add button" width={60} height={60} />
+      </button>
     </>
   )
 }

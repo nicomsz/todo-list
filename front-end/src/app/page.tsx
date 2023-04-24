@@ -1,31 +1,26 @@
 import TodoList from './components/todolist'
-type Todo = {
-  id: string
-  name: string
-  checked: string
+
+export type TodoProps = {
+  todos: {
+    id: string
+    name: string
+    checked: boolean
+  }[]
 }
-const config = {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-  },
-}
-const todos: Todo[] = []
-fetch('http://localhost:3333/todos', config)
-  .then((response) => response.json())
-  .then((data) => {
-    data.forEach(({ todo }) => {
-      todos.push(todo)
-    })
-    // Aqui, você pode trabalhar com o array completo de todos, já preenchido com os dados da API
-    console.log([{ todos }])
+async function getTodos() {
+  const response = await fetch('http://localhost:3333/todos', {
+    cache: 'no-cache',
   })
-export default function Home() {
+  const todos = await response.json()
+
+  return todos
+}
+export default async function Home() {
+  const todos: TodoProps = await getTodos()
   return (
     <>
       <div>
-        <TodoList todos={{ todos }} />
+        <TodoList todos={todos.todos} />
       </div>
     </>
   )

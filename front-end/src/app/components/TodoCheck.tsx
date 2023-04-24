@@ -21,7 +21,7 @@ export function TodoCheck({ id, checked }: TodoProps) {
         return unchecked
     }
   })
-  function handleAdd() {
+  function handleIcon() {
     if (icon === checkmark) {
       setIcon(unchecked)
     } else {
@@ -44,7 +44,7 @@ export function TodoCheck({ id, checked }: TodoProps) {
     <>
       <button
         className="rounded-3xl content-end align-bottom"
-        onClick={handleAdd}
+        onClick={handleIcon}
       >
         <Image src={icon} alt="SVG" width={30} height={30} />
       </button>

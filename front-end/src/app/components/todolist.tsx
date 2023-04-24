@@ -3,14 +3,14 @@
 import { HandleTodo } from './HandleTodo'
 import DateTime from './DateTime'
 import { TodoCheck } from './TodoCheck'
-
-export default function TodoList({ todos }) {
+import { TodoProps } from '../page'
+export default function TodoList({ todos }: TodoProps) {
   return (
     <>
       <div className="flex items-center h-screen px-8 ">
-        <div className="bg-white h-[500px] w-[320px] mx-auto rounded-lg p-8 flex flex-col">
+        <div className="bg-white h-[600px] w-[320px] mx-auto rounded-lg p-8 flex flex-col">
           <DateTime />
-          {todos?.map((todo) => {
+          {todos.map((todo) => {
             return (
               <li className="pt-5 list-none flex b" key={todo.name}>
                 <p>{todo.name} </p>
@@ -19,7 +19,7 @@ export default function TodoList({ todos }) {
               </li>
             )
           })}
-          <div className="flex justify-center mt-auto -mb-20 ">
+          <div className="flex justify-center mt-auto w-full -mr-16">
             <HandleTodo />
           </div>
         </div>
