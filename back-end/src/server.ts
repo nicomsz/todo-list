@@ -11,7 +11,10 @@ app.post("/todo", async (req, res) => {
   const { name } = req.body;
   const today = dayjs().startOf("day").toDate();
   res.setHeader('Content-Type', 'application/json');
-
+  const todos = await prisma.todo.findMany({})
+  if ( todos.length >= 8 ) {
+    return res.json("Não foi possivel concluir o cadastro, quantidade de todos maior que 8")
+  } else { 
   const todo = await prisma.todo.create({
     data: {
       name: name,
@@ -21,10 +24,13 @@ app.post("/todo", async (req, res) => {
   });
   console.log('Todo here:' + todo)
   return res.json("Usuário criado com sucesso");
+}
 });
 
 app.get("/todos", async (req, res) => {
-  const todos = await prisma.todo.findMany({});
+  const todos = await prisma.todo.findMany({
+    take: 7
+  });
   
   return res.json({ todos });
 });
